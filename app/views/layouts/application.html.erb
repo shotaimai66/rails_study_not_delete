@@ -6,11 +6,23 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav>
+          <% if user_signed_in? %>
+            <%= link_to 'プロフィール変更', edit_user_registration_path %>
+            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+          <% end %>
+      </nav>
+    </header>
+    <div class='container'>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>
